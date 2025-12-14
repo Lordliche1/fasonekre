@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Configuration
-APP_DIR="/var/www/fasonekre"
-GIT_URL="<VOTRE_GIT_URL>" # À remplacer par l'URL de votre dépôt
-USER="root"
+APP_DIR="/home/dreamdev/fasonekre.waapii.com"
+GIT_URL="https://github.com/Lordliche1/fasonekre.git"
+USER="zongo"
 
 echo "🚀 Début du déploiement de FASONEKRE..."
 
