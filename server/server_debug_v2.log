@@ -1,0 +1,622 @@
+
+> grievance-backend@1.0.0 start
+> nodemon app.js
+
+[33m[nodemon] 2.0.22[39m
+[33m[nodemon] to restart at any time, enter `rs`[39m
+[33m[nodemon] watching path(s): *.*[39m
+[33m[nodemon] watching extensions: js,mjs,json[39m
+[32m[nodemon] starting `node app.js`[39m
+mongoose: the method name "validate" is used by mongoose internally, overwriting it may cause bugs. If you're sure you know what you're doing, you can suppress this error by using `schema.method('validate', fn, { suppressWarning: true })`.
+Server is listening on port 3000...
+🔄 Serveur redémarré : 10:22:50
+📥 [UNIVERSAL-LOGIN] Requête reçue
+📧 [UNIVERSAL-LOGIN] Email: admin@admin.com
+🔍 [UNIVERSAL-LOGIN] Recherche dans Admin...
+👤 [UNIVERSAL-LOGIN] Admin trouvé: Oui (Super Admin)
+🔑 [UNIVERSAL-LOGIN] Vérification mot de passe admin...
+✓ [UNIVERSAL-LOGIN] Mot de passe correct: true
+🎟️ [UNIVERSAL-LOGIN] Génération token admin...
+✅ [UNIVERSAL-LOGIN] Connexion admin réussie!
+📥 [UNIVERSAL-LOGIN] Requête reçue
+📧 [UNIVERSAL-LOGIN] Email: admin@admin.com
+🔍 [UNIVERSAL-LOGIN] Recherche dans Admin...
+👤 [UNIVERSAL-LOGIN] Admin trouvé: Oui (Super Admin)
+🔑 [UNIVERSAL-LOGIN] Vérification mot de passe admin...
+✓ [UNIVERSAL-LOGIN] Mot de passe correct: true
+🎟️ [UNIVERSAL-LOGIN] Génération token admin...
+✅ [UNIVERSAL-LOGIN] Connexion admin réussie!
+(node:22920) [DEP0044] DeprecationWarning: The `util.isArray` API is deprecated. Please use `Array.isArray()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+mongoose: the method name "validate" is used by mongoose internally, overwriting it may cause bugs. If you're sure you know what you're doing, you can suppress this error by using `schema.method('validate', fn, { suppressWarning: true })`.
+Server is listening on port 3000...
+🔄 Serveur redémarré : 10:39:03
+(node:20576) [DEP0044] DeprecationWarning: The `util.isArray` API is deprecated. Please use `Array.isArray()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+mongoose: the method name "validate" is used by mongoose internally, overwriting it may cause bugs. If you're sure you know what you're doing, you can suppress this error by using `schema.method('validate', fn, { suppressWarning: true })`.
+Server is listening on port 3000...
+🔄 Serveur redémarré : 11:07:23
+(node:21664) [DEP0044] DeprecationWarning: The `util.isArray` API is deprecated. Please use `Array.isArray()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+Error getting departments: MissingSchemaError: Schema hasn't been registered for model "Request".
+Use mongoose.model(name, schema)
+    at Mongoose.model (C:\Users\user\Documents\complain\municipal-complain-bf\server\node_modules\mongoose\lib\index.js:526:13)
+    at DepartmentSchema.methods.getStats (C:\Users\user\Documents\complain\municipal-complain-bf\server\models\Department.js:55:30)
+    at C:\Users\user\Documents\complain\municipal-complain-bf\server\controllers\departmentController.js:17:42
+    at Array.map (<anonymous>)
+    at exports.getAllDepartments (C:\Users\user\Documents\complain\municipal-complain-bf\server\controllers\departmentController.js:16:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error getting departments: MissingSchemaError: Schema hasn't been registered for model "Request".
+Use mongoose.model(name, schema)
+    at Mongoose.model (C:\Users\user\Documents\complain\municipal-complain-bf\server\node_modules\mongoose\lib\index.js:526:13)
+    at DepartmentSchema.methods.getStats (C:\Users\user\Documents\complain\municipal-complain-bf\server\models\Department.js:55:30)
+    at C:\Users\user\Documents\complain\municipal-complain-bf\server\controllers\departmentController.js:17:42
+    at Array.map (<anonymous>)
+    at exports.getAllDepartments (C:\Users\user\Documents\complain\municipal-complain-bf\server\controllers\departmentController.js:16:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error getting departments: MissingSchemaError: Schema hasn't been registered for model "Request".
+Use mongoose.model(name, schema)
+    at Mongoose.model (C:\Users\user\Documents\complain\municipal-complain-bf\server\node_modules\mongoose\lib\index.js:526:13)
+    at DepartmentSchema.methods.getStats (C:\Users\user\Documents\complain\municipal-complain-bf\server\models\Department.js:55:30)
+    at C:\Users\user\Documents\complain\municipal-complain-bf\server\controllers\departmentController.js:17:42
+    at Array.map (<anonymous>)
+    at exports.getAllDepartments (C:\Users\user\Documents\complain\municipal-complain-bf\server\controllers\departmentController.js:16:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+mongoose: the method name "validate" is used by mongoose internally, overwriting it may cause bugs. If you're sure you know what you're doing, you can suppress this error by using `schema.method('validate', fn, { suppressWarning: true })`.
+Server is listening on port 3000...
+🔄 Serveur redémarré : 11:36:55
+(node:21224) [DEP0044] DeprecationWarning: The `util.isArray` API is deprecated. Please use `Array.isArray()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+mongoose: the method name "validate" is used by mongoose internally, overwriting it may cause bugs. If you're sure you know what you're doing, you can suppress this error by using `schema.method('validate', fn, { suppressWarning: true })`.
+Server is listening on port 3000...
+🔄 Serveur redémarré : 11:41:34
+(node:7404) [DEP0044] DeprecationWarning: The `util.isArray` API is deprecated. Please use `Array.isArray()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+mongoose: the method name "validate" is used by mongoose internally, overwriting it may cause bugs. If you're sure you know what you're doing, you can suppress this error by using `schema.method('validate', fn, { suppressWarning: true })`.
+Server is listening on port 3000...
+🔄 Serveur redémarré : 11:45:13
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+mongoose: the method name "validate" is used by mongoose internally, overwriting it may cause bugs. If you're sure you know what you're doing, you can suppress this error by using `schema.method('validate', fn, { suppressWarning: true })`.
+Server is listening on port 3000...
+🔄 Serveur redémarré : 11:45:18
+(node:20664) [DEP0044] DeprecationWarning: The `util.isArray` API is deprecated. Please use `Array.isArray()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+REGISTER OFFICER START
+req.body: {
+  name: 'Ali Badara',
+  email: 'badara@waapii.com',
+  phone: '71343456',
+  department: '693ad726a8b2124b4c50e0bb',
+  level: 3,
+  password: 'ali2025'
+}
+req.user: undefined
+req.admin: { adminId: '693bdbb082941433cc880959', name: 'Super Admin' }
+Using adminId: 693bdbb082941433cc880959
+Found Admin: {
+  role: 'admin',
+  _id: 693bdbb082941433cc880959,
+  name: 'Super Admin',
+  email: 'admin@admin.com',
+  password: '$2a$10$5fkXJATvi5Gehj1PN.tc1eB6HfwRmeWMarsx1wqHjUFXvku70hKte',
+  district: 'Ouagadougou',
+  __v: 0
+}
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+mongoose: the method name "validate" is used by mongoose internally, overwriting it may cause bugs. If you're sure you know what you're doing, you can suppress this error by using `schema.method('validate', fn, { suppressWarning: true })`.
+node:events:496
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1939:16)
+    at listenInCluster (node:net:1996:12)
+    at Server.listen (node:net:2101:7)
+    at Function.listen (C:\Users\user\Documents\complain\municipal-complain-bf\server\node_modules\express\lib\application.js:635:24)
+    at start (C:\Users\user\Documents\complain\municipal-complain-bf\server\app.js:78:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1975:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+
+Node.js v22.16.0
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+mongoose: the method name "validate" is used by mongoose internally, overwriting it may cause bugs. If you're sure you know what you're doing, you can suppress this error by using `schema.method('validate', fn, { suppressWarning: true })`.
+Server is listening on port 3000...
+🔄 Serveur redémarré : 11:57:19
+(node:13340) [DEP0044] DeprecationWarning: The `util.isArray` API is deprecated. Please use `Array.isArray()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+REGISTER OFFICER START
+req.body: {
+  name: 'ali badara',
+  email: 'badara@yapapo.com',
+  phone: '56565675',
+  department: '693ad726a8b2124b4c50e0bb',
+  level: 3,
+  password: 'ali2025'
+}
+req.user: undefined
+req.admin: { adminId: '693bdbb082941433cc880959', name: 'Super Admin' }
+Using adminId: 693bdbb082941433cc880959
+Found Admin: {
+  role: 'admin',
+  _id: 693bdbb082941433cc880959,
+  name: 'Super Admin',
+  email: 'admin@admin.com',
+  password: '$2a$10$5fkXJATvi5Gehj1PN.tc1eB6HfwRmeWMarsx1wqHjUFXvku70hKte',
+  district: 'Ouagadougou',
+  __v: 0
+}
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+[32m[nodemon] restarting due to changes...[39m
+C:\Users\user\Documents\complain\municipal-complain-bf\server\routes\admin.js:41
+router.post('/citizens', createCitizen);
+                         ^
+
+ReferenceError: createCitizen is not defined
+    at Object.<anonymous> (C:\Users\user\Documents\complain\municipal-complain-bf\server\routes\admin.js:41:26)
+    at Module._compile (node:internal/modules/cjs/loader:1730:14)
+    at Object..js (node:internal/modules/cjs/loader:1895:10)
+    at Module.load (node:internal/modules/cjs/loader:1465:32)
+    at Function._load (node:internal/modules/cjs/loader:1282:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    at Module.require (node:internal/modules/cjs/loader:1487:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (C:\Users\user\Documents\complain\municipal-complain-bf\server\app.js:44:21)
+    at Module._compile (node:internal/modules/cjs/loader:1730:14)
+    at Object..js (node:internal/modules/cjs/loader:1895:10)
+    at Module.load (node:internal/modules/cjs/loader:1465:32)
+    at Function._load (node:internal/modules/cjs/loader:1282:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+
+Node.js v22.16.0
+[32m[nodemon] starting `node app.js`[39m
+C:\Users\user\Documents\complain\municipal-complain-bf\server\routes\admin.js:41
+router.post('/citizens', createCitizen);
+                         ^
+
+ReferenceError: createCitizen is not defined
+    at Object.<anonymous> (C:\Users\user\Documents\complain\municipal-complain-bf\server\routes\admin.js:41:26)
+    at Module._compile (node:internal/modules/cjs/loader:1730:14)
+    at Object..js (node:internal/modules/cjs/loader:1895:10)
+    at Module.load (node:internal/modules/cjs/loader:1465:32)
+    at Function._load (node:internal/modules/cjs/loader:1282:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    at Module.require (node:internal/modules/cjs/loader:1487:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (C:\Users\user\Documents\complain\municipal-complain-bf\server\app.js:44:21)
+    at Module._compile (node:internal/modules/cjs/loader:1730:14)
+    at Object..js (node:internal/modules/cjs/loader:1895:10)
+    at Module.load (node:internal/modules/cjs/loader:1465:32)
+    at Function._load (node:internal/modules/cjs/loader:1282:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+
+Node.js v22.16.0
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+mongoose: the method name "validate" is used by mongoose internally, overwriting it may cause bugs. If you're sure you know what you're doing, you can suppress this error by using `schema.method('validate', fn, { suppressWarning: true })`.
+Server is listening on port 3000...
+🔄 Serveur redémarré : 12:28:29
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+mongoose: the method name "validate" is used by mongoose internally, overwriting it may cause bugs. If you're sure you know what you're doing, you can suppress this error by using `schema.method('validate', fn, { suppressWarning: true })`.
+Server is listening on port 3000...
+🔄 Serveur redémarré : 14:03:39
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+mongoose: the method name "validate" is used by mongoose internally, overwriting it may cause bugs. If you're sure you know what you're doing, you can suppress this error by using `schema.method('validate', fn, { suppressWarning: true })`.
+node:events:496
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1939:16)
+    at listenInCluster (node:net:1996:12)
+    at Server.listen (node:net:2101:7)
+    at Function.listen (C:\Users\user\Documents\complain\municipal-complain-bf\server\node_modules\express\lib\application.js:635:24)
+    at start (C:\Users\user\Documents\complain\municipal-complain-bf\server\app.js:78:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1975:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+
+Node.js v22.16.0
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+mongoose: the method name "validate" is used by mongoose internally, overwriting it may cause bugs. If you're sure you know what you're doing, you can suppress this error by using `schema.method('validate', fn, { suppressWarning: true })`.
+Server is listening on port 3000...
+🔄 Serveur redémarré : 14:04:15
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+mongoose: the method name "validate" is used by mongoose internally, overwriting it may cause bugs. If you're sure you know what you're doing, you can suppress this error by using `schema.method('validate', fn, { suppressWarning: true })`.
+node:events:496
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1939:16)
+    at listenInCluster (node:net:1996:12)
+    at Server.listen (node:net:2101:7)
+    at Function.listen (C:\Users\user\Documents\complain\municipal-complain-bf\server\node_modules\express\lib\application.js:635:24)
+    at start (C:\Users\user\Documents\complain\municipal-complain-bf\server\app.js:78:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1975:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+
+Node.js v22.16.0
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+C:\Users\user\Documents\complain\municipal-complain-bf\server\routes\auth.js:10
+router.get('/locations', getLocations);
+                         ^
+
+ReferenceError: getLocations is not defined
+    at Object.<anonymous> (C:\Users\user\Documents\complain\municipal-complain-bf\server\routes\auth.js:10:26)
+    at Module._compile (node:internal/modules/cjs/loader:1730:14)
+    at Object..js (node:internal/modules/cjs/loader:1895:10)
+    at Module.load (node:internal/modules/cjs/loader:1465:32)
+    at Function._load (node:internal/modules/cjs/loader:1282:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    at Module.require (node:internal/modules/cjs/loader:1487:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (C:\Users\user\Documents\complain\municipal-complain-bf\server\app.js:38:20)
+    at Module._compile (node:internal/modules/cjs/loader:1730:14)
+    at Object..js (node:internal/modules/cjs/loader:1895:10)
+    at Module.load (node:internal/modules/cjs/loader:1465:32)
+    at Function._load (node:internal/modules/cjs/loader:1282:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+
+Node.js v22.16.0
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+mongoose: the method name "validate" is used by mongoose internally, overwriting it may cause bugs. If you're sure you know what you're doing, you can suppress this error by using `schema.method('validate', fn, { suppressWarning: true })`.
+Server is listening on port 3000...
+🔄 Serveur redémarré : 14:04:45
+Error: User validation failed: phone: Phone number must be a minimum of 10 characters, role: `citizen` is not a valid enum value for path `role`.
+    at ValidationError.inspect (C:\Users\user\Documents\complain\municipal-complain-bf\server\node_modules\mongoose\lib\error\validation.js:48:26)
+    at formatValue (node:internal/util/inspect:877:19)
+    at inspect (node:internal/util/inspect:404:10)
+    at formatWithOptionsInternal (node:internal/util/inspect:2402:40)
+    at formatWithOptions (node:internal/util/inspect:2264:10)
+    at console.value (node:internal/console/constructor:336:14)
+    at console.log (node:internal/console/constructor:384:61)
+    at register (C:\Users\user\Documents\complain\municipal-complain-bf\server\controllers\auth.js:19:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errors: {
+    phone: ValidatorError: Phone number must be a minimum of 10 characters
+        at validate (C:\Users\user\Documents\complain\municipal-complain-bf\server\node_modules\mongoose\lib\schematype.js:1270:13)
+        at C:\Users\user\Documents\complain\municipal-complain-bf\server\node_modules\mongoose\lib\schematype.js:1253:7
+        at Array.forEach (<anonymous>)
+        at SchemaType.doValidate (C:\Users\user\Documents\complain\municipal-complain-bf\server\node_modules\mongoose\lib\schematype.js:1198:14)
+        at C:\Users\user\Documents\complain\municipal-complain-bf\server\node_modules\mongoose\lib\document.js:2567:18
+        at process.processTicksAndRejections (node:internal/process/task_queues:85:11) {
+      properties: [Object],
+      kind: 'minlength',
+      path: 'phone',
+      value: '77656543',
+      reason: undefined,
+      [Symbol(mongoose:validatorError)]: true
+    },
+    role: ValidatorError: `citizen` is not a valid enum value for path `role`.
+        at validate (C:\Users\user\Documents\complain\municipal-complain-bf\server\node_modules\mongoose\lib\schematype.js:1270:13)
+        at C:\Users\user\Documents\complain\municipal-complain-bf\server\node_modules\mongoose\lib\schematype.js:1253:7
+        at Array.forEach (<anonymous>)
+        at SchemaType.doValidate (C:\Users\user\Documents\complain\municipal-complain-bf\server\node_modules\mongoose\lib\schematype.js:1198:14)
+        at C:\Users\user\Documents\complain\municipal-complain-bf\server\node_modules\mongoose\lib\document.js:2567:18
+        at process.processTicksAndRejections (node:internal/process/task_queues:85:11) {
+      properties: [Object],
+      kind: 'enum',
+      path: 'role',
+      value: 'citizen',
+      reason: undefined,
+      [Symbol(mongoose:validatorError)]: true
+    }
+  },
+  _message: 'User validation failed'
+}
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+mongoose: the method name "validate" is used by mongoose internally, overwriting it may cause bugs. If you're sure you know what you're doing, you can suppress this error by using `schema.method('validate', fn, { suppressWarning: true })`.
+node:events:496
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1939:16)
+    at listenInCluster (node:net:1996:12)
+    at Server.listen (node:net:2101:7)
+    at Function.listen (C:\Users\user\Documents\complain\municipal-complain-bf\server\node_modules\express\lib\application.js:635:24)
+    at start (C:\Users\user\Documents\complain\municipal-complain-bf\server\app.js:78:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1975:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+
+Node.js v22.16.0
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+mongoose: the method name "validate" is used by mongoose internally, overwriting it may cause bugs. If you're sure you know what you're doing, you can suppress this error by using `schema.method('validate', fn, { suppressWarning: true })`.
+Server is listening on port 3000...
+🔄 Serveur redémarré : 15:07:07
+AUTH MIDDLEWARE: {
+  user: {
+    userId: '693ecc7c1c198027ecaf7705',
+    name: 'alida',
+    role: undefined
+  },
+  admin: { adminId: '693ecc7c1c198027ecaf7705', name: 'alida' }
+}
+AUTH MIDDLEWARE: {
+  user: {
+    userId: '693ecc7c1c198027ecaf7705',
+    name: 'alida',
+    role: undefined
+  },
+  admin: { adminId: '693ecc7c1c198027ecaf7705', name: 'alida' }
+}
+AUTH MIDDLEWARE: {
+  user: {
+    userId: '693ecc7c1c198027ecaf7705',
+    name: 'alida',
+    role: undefined
+  },
+  admin: { adminId: '693ecc7c1c198027ecaf7705', name: 'alida' }
+}
+AUTH MIDDLEWARE: {
+  user: {
+    userId: '693ecc7c1c198027ecaf7705',
+    name: 'alida',
+    role: undefined
+  },
+  admin: { adminId: '693ecc7c1c198027ecaf7705', name: 'alida' }
+}
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+mongoose: the method name "validate" is used by mongoose internally, overwriting it may cause bugs. If you're sure you know what you're doing, you can suppress this error by using `schema.method('validate', fn, { suppressWarning: true })`.
+node:events:496
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1939:16)
+    at listenInCluster (node:net:1996:12)
+    at Server.listen (node:net:2101:7)
+    at Function.listen (C:\Users\user\Documents\complain\municipal-complain-bf\server\node_modules\express\lib\application.js:635:24)
+    at start (C:\Users\user\Documents\complain\municipal-complain-bf\server\app.js:78:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1975:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+
+Node.js v22.16.0
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+mongoose: the method name "validate" is used by mongoose internally, overwriting it may cause bugs. If you're sure you know what you're doing, you can suppress this error by using `schema.method('validate', fn, { suppressWarning: true })`.
+Server is listening on port 3000...
+🔄 Serveur redémarré : 15:20:28
+Error: User validation failed: age: Please provide age, commune: Please provide commune, province: Please provide province, region: Please provide region, name: Please provide name, role: `citizen` is not a valid enum value for path `role`.
+    at ValidationError.inspect (C:\Users\user\Documents\complain\municipal-complain-bf\server\node_modules\mongoose\lib\error\validation.js:48:26)
+    at formatValue (node:internal/util/inspect:877:19)
+    at inspect (node:internal/util/inspect:404:10)
+    at formatWithOptionsInternal (node:internal/util/inspect:2402:40)
+    at formatWithOptions (node:internal/util/inspect:2264:10)
+    at console.value (node:internal/console/constructor:336:14)
+    at console.log (node:internal/console/constructor:384:61)
+    at register (C:\Users\user\Documents\complain\municipal-complain-bf\server\controllers\auth.js:19:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errors: {
+    age: ValidatorError: Please provide age
+        at validate (C:\Users\user\Documents\complain\municipal-complain-bf\server\node_modules\mongoose\lib\schematype.js:1270:13)
+        at C:\Users\user\Documents\complain\municipal-complain-bf\server\node_modules\mongoose\lib\schematype.js:1253:7
+        at Array.forEach (<anonymous>)
+        at SchemaType.doValidate (C:\Users\user\Documents\complain\municipal-complain-bf\server\node_modules\mongoose\lib\schematype.js:1198:14)
+        at C:\Users\user\Documents\complain\municipal-complain-bf\server\node_modules\mongoose\lib\document.js:2567:18
+        at process.processTicksAndRejections (node:internal/process/task_queues:85:11) {
+      properties: [Object],
+      kind: 'required',
+      path: 'age',
+      value: undefined,
+      reason: undefined,
+      [Symbol(mongoose:validatorError)]: true
+    },
+    commune: ValidatorError: Please provide commune
+        at validate (C:\Users\user\Documents\complain\municipal-complain-bf\server\node_modules\mongoose\lib\schematype.js:1270:13)
+        at C:\Users\user\Documents\complain\municipal-complain-bf\server\node_modules\mongoose\lib\schematype.js:1253:7
+        at Array.forEach (<anonymous>)
+        at SchemaType.doValidate (C:\Users\user\Documents\complain\municipal-complain-bf\server\node_modules\mongoose\lib\schematype.js:1198:14)
+        at C:\Users\user\Documents\complain\municipal-complain-bf\server\node_modules\mongoose\lib\document.js:2567:18
+        at process.processTicksAndRejections (node:internal/process/task_queues:85:11) {
+      properties: [Object],
+      kind: 'required',
+      path: 'commune',
+      value: undefined,
+      reason: undefined,
+      [Symbol(mongoose:validatorError)]: true
+    },
+    province: ValidatorError: Please provide province
+        at validate (C:\Users\user\Documents\complain\municipal-complain-bf\server\node_modules\mongoose\lib\schematype.js:1270:13)
+        at C:\Users\user\Documents\complain\municipal-complain-bf\server\node_modules\mongoose\lib\schematype.js:1253:7
+        at Array.forEach (<anonymous>)
+        at SchemaType.doValidate (C:\Users\user\Documents\complain\municipal-complain-bf\server\node_modules\mongoose\lib\schematype.js:1198:14)
+        at C:\Users\user\Documents\complain\municipal-complain-bf\server\node_modules\mongoose\lib\document.js:2567:18
+        at process.processTicksAndRejections (node:internal/process/task_queues:85:11) {
+      properties: [Object],
+      kind: 'required',
+      path: 'province',
+      value: undefined,
+      reason: undefined,
+      [Symbol(mongoose:validatorError)]: true
+    },
+    region: ValidatorError: Please provide region
+        at validate (C:\Users\user\Documents\complain\municipal-complain-bf\server\node_modules\mongoose\lib\schematype.js:1270:13)
+        at C:\Users\user\Documents\complain\municipal-complain-bf\server\node_modules\mongoose\lib\schematype.js:1253:7
+        at Array.forEach (<anonymous>)
+        at SchemaType.doValidate (C:\Users\user\Documents\complain\municipal-complain-bf\server\node_modules\mongoose\lib\schematype.js:1198:14)
+        at C:\Users\user\Documents\complain\municipal-complain-bf\server\node_modules\mongoose\lib\document.js:2567:18
+        at process.processTicksAndRejections (node:internal/process/task_queues:85:11) {
+      properties: [Object],
+      kind: 'required',
+      path: 'region',
+      value: undefined,
+      reason: undefined,
+      [Symbol(mongoose:validatorError)]: true
+    },
+    name: ValidatorError: Please provide name
+        at validate (C:\Users\user\Documents\complain\municipal-complain-bf\server\node_modules\mongoose\lib\schematype.js:1270:13)
+        at C:\Users\user\Documents\complain\municipal-complain-bf\server\node_modules\mongoose\lib\schematype.js:1253:7
+        at Array.forEach (<anonymous>)
+        at SchemaType.doValidate (C:\Users\user\Documents\complain\municipal-complain-bf\server\node_modules\mongoose\lib\schematype.js:1198:14)
+        at C:\Users\user\Documents\complain\municipal-complain-bf\server\node_modules\mongoose\lib\document.js:2567:18
+        at process.processTicksAndRejections (node:internal/process/task_queues:85:11) {
+      properties: [Object],
+      kind: 'required',
+      path: 'name',
+      value: undefined,
+      reason: undefined,
+      [Symbol(mongoose:validatorError)]: true
+    },
+    role: ValidatorError: `citizen` is not a valid enum value for path `role`.
+        at validate (C:\Users\user\Documents\complain\municipal-complain-bf\server\node_modules\mongoose\lib\schematype.js:1270:13)
+        at C:\Users\user\Documents\complain\municipal-complain-bf\server\node_modules\mongoose\lib\schematype.js:1253:7
+        at Array.forEach (<anonymous>)
+        at SchemaType.doValidate (C:\Users\user\Documents\complain\municipal-complain-bf\server\node_modules\mongoose\lib\schematype.js:1198:14)
+        at C:\Users\user\Documents\complain\municipal-complain-bf\server\node_modules\mongoose\lib\document.js:2567:18
+        at process.processTicksAndRejections (node:internal/process/task_queues:85:11) {
+      properties: [Object],
+      kind: 'enum',
+      path: 'role',
+      value: 'citizen',
+      reason: undefined,
+      [Symbol(mongoose:validatorError)]: true
+    }
+  },
+  _message: 'User validation failed'
+}
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+mongoose: the method name "validate" is used by mongoose internally, overwriting it may cause bugs. If you're sure you know what you're doing, you can suppress this error by using `schema.method('validate', fn, { suppressWarning: true })`.
+Server is listening on port 3000...
+🔄 Serveur redémarré : 15:23:14
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+mongoose: the method name "validate" is used by mongoose internally, overwriting it may cause bugs. If you're sure you know what you're doing, you can suppress this error by using `schema.method('validate', fn, { suppressWarning: true })`.
+node:events:496
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1939:16)
+    at listenInCluster (node:net:1996:12)
+    at Server.listen (node:net:2101:7)
+    at Function.listen (C:\Users\user\Documents\complain\municipal-complain-bf\server\node_modules\express\lib\application.js:635:24)
+    at start (C:\Users\user\Documents\complain\municipal-complain-bf\server\app.js:78:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1975:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+
+Node.js v22.16.0
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+mongoose: the method name "validate" is used by mongoose internally, overwriting it may cause bugs. If you're sure you know what you're doing, you can suppress this error by using `schema.method('validate', fn, { suppressWarning: true })`.
+node:events:496
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1939:16)
+    at listenInCluster (node:net:1996:12)
+    at Server.listen (node:net:2101:7)
+    at Function.listen (C:\Users\user\Documents\complain\municipal-complain-bf\server\node_modules\express\lib\application.js:635:24)
+    at start (C:\Users\user\Documents\complain\municipal-complain-bf\server\app.js:78:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1975:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+
+Node.js v22.16.0
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+mongoose: the method name "validate" is used by mongoose internally, overwriting it may cause bugs. If you're sure you know what you're doing, you can suppress this error by using `schema.method('validate', fn, { suppressWarning: true })`.
+Server is listening on port 3000...
+🔄 Serveur redémarré : 15:57:19

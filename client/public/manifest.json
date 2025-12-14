@@ -1,0 +1,32 @@
+{
+  "name": "FASONEKRE - Plateforme Citoyenne Burkina Faso",
+  "short_name": "FASONEKRE",
+  "description": "Plateforme citoyenne de gestion de plaintes pour les municipalités du Burkina Faso",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#009e49",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": [
+    "government",
+    "utilities"
+  ],
+  "lang": "fr-BF",
+  "dir": "ltr",
+  "scope": "/",
+  "prefer_related_applications": false
+}

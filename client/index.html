@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- PWA Configuration -->
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#009e49" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="FASONEKRE" />
+
+  <!-- SEO Meta Tags -->
+  <meta name="description"
+    content="FASONEKRE - Plateforme citoyenne de gestion de plaintes pour les municipalités du Burkina Faso" />
+  <meta name="keywords" content="burkina faso, fasonekre, municipalité, plaintes, citoyens, services municipaux" />
+  <meta name="author" content="FASONEKRE - Burkina Faso" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="FASONEKRE - Plateforme Municipale Burkina Faso" />
+  <meta property="og:description" content="Signalez et suivez vos plaintes municipales en ligne" />
+
+  <!-- Icons -->
+  <link rel="icon" type="image/png" sizes="192x192" href="/icon-192x192.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/icon-512x512.png" />
+  <link rel="apple-touch-icon" href="/icon-192x192.png" />
+
+  <title>FASONEKRE - Plateforme Citoyenne Burkina Faso</title>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="./src/main.jsx"></script>
+
+  <!-- Service Worker Registration -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then((registration) => {
+            console.log('Service Worker enregistré:', registration);
+          })
+          .catch((error) => {
+            console.log('Erreur Service Worker:', error);
+          });
+      });
+    }
+  </script>
+</body>
+
+</html>
