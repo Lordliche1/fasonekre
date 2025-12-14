@@ -15,7 +15,7 @@ export default function DepartmentComplaints() {
         try {
             const token = localStorage.getItem('token');
             const res = await axios.get(
-                'http://127.0.0.1:3000/api/v1/department/complaints',
+                '/api/v1/department/complaints',
                 { headers: { Authorization: `Bearer ${token}` } }
             );
             setComplaints(res.data.complaints || []);

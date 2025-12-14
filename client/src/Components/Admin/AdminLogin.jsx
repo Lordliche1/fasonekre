@@ -28,7 +28,7 @@ export default function AdminLogin() {
 
         try {
             console.log('Tentative de connexion avec:', formData.email);
-            const response = await axios.post('http://127.0.0.1:3000/api/v1/auth/universal-login', formData);
+            const response = await axios.post('/api/v1/auth/universal-login', formData);
 
             console.log('Réponse:', response.data);
 

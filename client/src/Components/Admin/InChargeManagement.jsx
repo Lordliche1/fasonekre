@@ -31,11 +31,11 @@ export default function InChargeManagement() {
             const config = { headers: { Authorization: `Bearer ${token}` } };
 
             // Fetch departments
-            const deptRes = await axios.get('http://127.0.0.1:3000/api/v1/admin/departments', config);
+            const deptRes = await axios.get('/api/v1/admin/departments', config);
             setDepartments(deptRes.data.data || []);
 
             // Fetch in-charges (officers)
-            const inChargeRes = await axios.get('http://127.0.0.1:3000/api/v1/admin/officers', config);
+            const inChargeRes = await axios.get('/api/v1/admin/officers', config);
             console.log('Officers response:', inChargeRes.data);
             setInCharges(inChargeRes.data.data || []);
 
@@ -56,14 +56,14 @@ export default function InChargeManagement() {
             if (editingInCharge) {
                 // Update
                 await axios.patch(
-                    `http://127.0.0.1:3000/api/v1/admin/officers/${editingInCharge._id}`,
+                    `/api/v1/admin/officers/${editingInCharge._id}`,
                     formData,
                     config
                 );
             } else {
                 // Create
                 await axios.post(
-                    'http://127.0.0.1:3000/api/v1/admin/officers',
+                    '/api/v1/admin/officers',
                     formData,
                     config
                 );
@@ -99,7 +99,7 @@ export default function InChargeManagement() {
         try {
             const token = localStorage.getItem('token');
             await axios.delete(
-                `http://127.0.0.1:3000/api/v1/admin/officers/${id}`,
+                `/api/v1/admin/officers/${id}`,
                 { headers: { Authorization: `Bearer ${token}` } }
             );
             fetchData();
@@ -113,7 +113,7 @@ export default function InChargeManagement() {
         try {
             const token = localStorage.getItem('token');
             await axios.patch(
-                `http://127.0.0.1:3000/api/v1/admin/officers/${id}/toggle-status`,
+                `/api/v1/admin/officers/${id}/toggle-status`,
                 { isActive: !currentStatus },
                 { headers: { Authorization: `Bearer ${token}` } }
             );

@@ -28,11 +28,11 @@ export default function DepartmentDashboard() {
             const config = { headers: { Authorization: `Bearer ${token}` } };
 
             // Utiliser les nouvelles routes department
-            const complaintsRes = await axios.get('http://127.0.0.1:3000/api/v1/department/complaints', config);
+            const complaintsRes = await axios.get('/api/v1/department/complaints', config);
             const complaintsData = complaintsRes.data.complaints || [];
 
             // Récupérer les ServiceMen
-            const servicemenRes = await axios.get('http://127.0.0.1:3000/api/v1/department/servicemen', config);
+            const servicemenRes = await axios.get('/api/v1/department/servicemen', config);
             setServicemen(servicemenRes.data.servicemen || []);
 
             setComplaints(complaintsData.slice(0, 10));
@@ -65,7 +65,7 @@ export default function DepartmentDashboard() {
         try {
             const token = localStorage.getItem('token');
             await axios.post(
-                `http://127.0.0.1:3000/api/v1/department/complaints/${selectedComplaint._id}/assign`,
+                `/api/v1/department/complaints/${selectedComplaint._id}/assign`,
                 { servicemanId },
                 { headers: { Authorization: `Bearer ${token}` } }
             );

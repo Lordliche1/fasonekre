@@ -28,7 +28,7 @@ export default function ComplaintDetail() {
         try {
             const token = localStorage.getItem('token');
             const res = await axios.get(
-                `http://127.0.0.1:3000/api/v1/serviceman/complaints/${id}`,
+                `/api/v1/serviceman/complaints/${id}`,
                 { headers: { Authorization: `Bearer ${token}` } }
             );
             setComplaint(res.data.complaint);
@@ -76,7 +76,7 @@ export default function ComplaintDetail() {
             };
 
             const reportRes = await axios.post(
-                'http://127.0.0.1:3000/api/v1/serviceman/reports',
+                '/api/v1/serviceman/reports',
                 reportPayload,
                 config
             );
@@ -94,7 +94,7 @@ export default function ComplaintDetail() {
                 reportData.audioNotes.forEach(file => formData.append('audioNotes', file));
 
                 await axios.post(
-                    `http://127.0.0.1:3000/api/v1/serviceman/reports/${reportId}/media`,
+                    `/api/v1/serviceman/reports/${reportId}/media`,
                     formData,
                     {
                         headers: {
@@ -107,7 +107,7 @@ export default function ComplaintDetail() {
 
             // 3. Terminer le rapport
             await axios.post(
-                `http://127.0.0.1:3000/api/v1/serviceman/reports/${reportId}/complete`,
+                `/api/v1/serviceman/reports/${reportId}/complete`,
                 {},
                 config
             );
@@ -192,7 +192,7 @@ export default function ComplaintDetail() {
                             {complaint.media.photos?.map((photo, idx) => (
                                 <img
                                     key={idx}
-                                    src={`http://127.0.0.1:3000${photo.url}`}
+                                    src={`${photo.url}`}
                                     alt="Photo plainte"
                                     className="media-thumb"
                                 />

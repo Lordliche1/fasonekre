@@ -21,7 +21,7 @@ export default function DepartmentManagement() {
     const fetchDepartments = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get('http://127.0.0.1:3000/api/v1/admin/departments', {
+            const response = await axios.get('/api/v1/admin/departments', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setDepartments(response.data.data);
@@ -41,14 +41,14 @@ export default function DepartmentManagement() {
             if (editingDept) {
                 // Mise à jour
                 await axios.put(
-                    `http://127.0.0.1:3000/api/v1/admin/departments/${editingDept._id}`,
+                    `/api/v1/admin/departments/${editingDept._id}`,
                     formData,
                     { headers: { Authorization: `Bearer ${token}` } }
                 );
             } else {
                 // Création
                 await axios.post(
-                    'http://127.0.0.1:3000/api/v1/admin/departments',
+                    '/api/v1/admin/departments',
                     formData,
                     { headers: { Authorization: `Bearer ${token}` } }
                 );
@@ -82,7 +82,7 @@ export default function DepartmentManagement() {
         try {
             const token = localStorage.getItem('token');
             await axios.delete(
-                `http://127.0.0.1:3000/api/v1/admin/departments/${deptId}`,
+                `/api/v1/admin/departments/${deptId}`,
                 { headers: { Authorization: `Bearer ${token}` } }
             );
             fetchDepartments();

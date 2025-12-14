@@ -22,7 +22,7 @@ export default function ServiceManManagement() {
         try {
             const token = localStorage.getItem('token');
             const res = await axios.get(
-                'http://127.0.0.1:3000/api/v1/department/servicemen',
+                '/api/v1/department/servicemen',
                 { headers: { Authorization: `Bearer ${token}` } }
             );
             setServicemen(res.data.servicemen || []);
@@ -42,7 +42,7 @@ export default function ServiceManManagement() {
         try {
             const token = localStorage.getItem('token');
             await axios.post(
-                'http://127.0.0.1:3000/api/v1/department/servicemen',
+                '/api/v1/department/servicemen',
                 formData,
                 { headers: { Authorization: `Bearer ${token}` } }
             );
@@ -63,7 +63,7 @@ export default function ServiceManManagement() {
         try {
             const token = localStorage.getItem('token');
             await axios.delete(
-                `http://127.0.0.1:3000/api/v1/department/servicemen/${id}`,
+                `/api/v1/department/servicemen/${id}`,
                 { headers: { Authorization: `Bearer ${token}` } }
             );
             fetchServicemen();

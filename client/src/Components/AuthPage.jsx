@@ -30,7 +30,7 @@ export default function AuthPage() {
     React.useEffect(() => {
         const fetchLocations = async () => {
             try {
-                const response = await axios.get('http://127.0.0.1:3000/api/v1/auth/locations');
+                const response = await axios.get('/api/v1/auth/locations');
                 const data = response.data.locations;
                 setLocationsData(data);
                 setRegions(data); // Initial regions list
@@ -128,7 +128,7 @@ export default function AuthPage() {
         try {
             // STEP 1: LOGIN (Request OTP)
             if (mode === 'login' && !requestingOtp) {
-                const response = await axios.post('http://127.0.0.1:3000/api/v1/auth/universal-login', {
+                const response = await axios.post('/api/v1/auth/universal-login', {
                     email: formData.email,
                     password: formData.password
                 });
@@ -148,7 +148,7 @@ export default function AuthPage() {
             }
             // STEP 2: VERIFY OTP
             else if (mode === 'login' && requestingOtp) {
-                const response = await axios.post('http://127.0.0.1:3000/api/v1/auth/verify-otp', {
+                const response = await axios.post('/api/v1/auth/verify-otp', {
                     email: tempEmail,
                     otp: otp
                 });
@@ -165,7 +165,7 @@ export default function AuthPage() {
                     setLoading(false); return;
                 }
                 const payload = { ...formData, role: 'user', age: 18, coordinates: formData.coordinates.length ? formData.coordinates : [12.3714, -1.5197] };
-                const response = await axios.post('http://127.0.0.1:3000/api/v1/auth/register', payload);
+                const response = await axios.post('/api/v1/auth/register', payload);
                 if (response.data.token) {
                     localStorage.setItem('token', response.data.token);
                     localStorage.setItem('userRole', 'citizen');

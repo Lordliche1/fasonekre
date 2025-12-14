@@ -14,7 +14,7 @@ export default function DepartmentStats() {
         try {
             const token = localStorage.getItem('token');
             const res = await axios.get(
-                'http://127.0.0.1:3000/api/v1/department/stats',
+                '/api/v1/department/stats',
                 { headers: { Authorization: `Bearer ${token}` } }
             );
             setStats(res.data.stats);

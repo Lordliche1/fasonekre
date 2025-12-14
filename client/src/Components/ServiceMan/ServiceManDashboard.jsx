@@ -27,11 +27,11 @@ export default function ServiceManDashboard() {
             };
 
             // Récupérer profil
-            const profileRes = await axios.get('http://127.0.0.1:3000/api/v1/serviceman/profile', config);
+            const profileRes = await axios.get('/api/v1/serviceman/profile', config);
             setProfile(profileRes.data.serviceman);
 
             // Récupérer plaintes
-            const complaintsRes = await axios.get('http://127.0.0.1:3000/api/v1/serviceman/complaints', config);
+            const complaintsRes = await axios.get('/api/v1/serviceman/complaints', config);
             const complaintsData = complaintsRes.data.complaints;
             setComplaints(complaintsData.slice(0, 5)); // 5 dernières
 
@@ -57,7 +57,7 @@ export default function ServiceManDashboard() {
         try {
             const token = localStorage.getItem('token');
             await axios.patch(
-                'http://127.0.0.1:3000/api/v1/serviceman/status',
+                '/api/v1/serviceman/status',
                 { status: newStatus },
                 { headers: { Authorization: `Bearer ${token}` } }
             );
