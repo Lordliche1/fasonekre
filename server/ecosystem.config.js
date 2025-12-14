@@ -1,7 +1,7 @@
 module.exports = {
     apps: [{
         name: "fasonekre-api",
-        script: "./index.js",
+        script: "./app.js",
         env_production: {
             NODE_ENV: "production",
             PORT: 3000,

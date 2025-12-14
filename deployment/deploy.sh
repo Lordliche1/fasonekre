@@ -11,7 +11,7 @@ echo "🚀 Début du déploiement de FASONEKRE..."
 if [ -d "$APP_DIR" ]; then
     echo "📂 Mise à jour du dépôt existant..."
     cd $APP_DIR
-    git pull
+    git pull origin main
 else
     echo "📂 Clonage du dépôt..."
     git clone $GIT_URL $APP_DIR

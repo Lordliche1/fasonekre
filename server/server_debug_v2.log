@@ -620,3 +620,5 @@ Node.js v22.16.0
 mongoose: the method name "validate" is used by mongoose internally, overwriting it may cause bugs. If you're sure you know what you're doing, you can suppress this error by using `schema.method('validate', fn, { suppressWarning: true })`.
 Server is listening on port 3000...
 🔄 Serveur redémarré : 15:57:19
+[32m[nodemon] restarting child process[39m
+[32m[nodemon] starting `node app.js`[39m
