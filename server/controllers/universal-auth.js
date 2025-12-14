@@ -1,122 +1,174 @@
 const User = require('../models/User')
 const Admin = require('../models/Admin')
 const Officer = require('../models/Officer')
+const ServiceMan = require('../models/ServiceMan')
 const { StatusCodes } = require('http-status-codes')
 const { BadRequestError, UnauthenticatedError } = require('../errors/')
+const { sendOTP } = require('../utils/sendEmail')
+const crypto = require('crypto');
 
-// Connexion universelle - détecte automatiquement le rôle
+// Fonction utilitaire pour générer OTP (6 chiffres)
+const generateOTP = () => {
+    return Math.floor(100000 + Math.random() * 900000).toString();
+};
+
+// 1. Initialiser la connexion (Vérif MDP + Envoi OTP)
 const universalLogin = async (req, res) => {
     try {
-        console.log('📥 [UNIVERSAL-LOGIN] Requête reçue');
         const { email, password } = req.body
-        console.log('📧 [UNIVERSAL-LOGIN] Email:', email);
 
         if (!email || !password) {
-            console.log('❌ [UNIVERSAL-LOGIN] Email ou password manquant');
             throw new BadRequestError('Veuillez fournir email et mot de passe')
         }
 
-        // Chercher dans les 3 collections
-        let user = null
+        let user = null;
+        let role = '';
+        let Model = null;
 
-        // 1. Vérifier Admin
-        console.log('🔍 [UNIVERSAL-LOGIN] Recherche dans Admin...');
-        user = await Admin.findOne({ email })
-        console.log('👤 [UNIVERSAL-LOGIN] Admin trouvé:', user ? 'Oui (' + user.name + ')' : 'Non');
+        // Stratégie de recherche en cascade
+        // 1. Admin
+        user = await Admin.findOne({ email });
+        if (user) { role = 'admin'; Model = Admin; }
 
-        if (user) {
-            console.log('🔑 [UNIVERSAL-LOGIN] Vérification mot de passe admin...');
-            const isPasswordCorrect = await user.comparePassword(password)
-            console.log('✓ [UNIVERSAL-LOGIN] Mot de passe correct:', isPasswordCorrect);
-
-            if (isPasswordCorrect) {
-                console.log('🎟️ [UNIVERSAL-LOGIN] Génération token admin...');
-                const token = user.createJWT()
-                console.log('✅ [UNIVERSAL-LOGIN] Connexion admin réussie!');
-                return res.status(StatusCodes.OK).json({
-                    user: { name: user.name, email: user.email },
-                    token,
-                    role: 'admin',
-                    redirectTo: '/admin/dashboard'
-                })
-            }
+        // 2. Officer
+        if (!user) {
+            user = await Officer.findOne({ email });
+            if (user) { role = 'officer'; Model = Officer; }
         }
 
-        // 2. Vérifier Officer
-        console.log('🔍 [UNIVERSAL-LOGIN] Recherche dans Officer...');
-        user = await Officer.findOne({ email })
-        console.log('👤 [UNIVERSAL-LOGIN] Officer trouvé:', user ? 'Oui' : 'Non');
-
-        if (user) {
-            const isPasswordCorrect = await user.comparePassword(password)
-            if (isPasswordCorrect) {
-                const token = user.createJWT()
-                console.log('✅ [UNIVERSAL-LOGIN] Connexion officer réussie!');
-                return res.status(StatusCodes.OK).json({
-                    user: { name: user.name, email: user.email },
-                    token,
-                    role: 'officer',
-                    redirectTo: '/adminpage'
-                })
-            }
+        // 3. ServiceMan
+        if (!user) {
+            user = await ServiceMan.findOne({ email });
+            if (user) { role = 'serviceman'; Model = ServiceMan; }
         }
 
-        // 3. Vérifier ServiceMan
-        console.log('🔍 [UNIVERSAL-LOGIN] Recherche dans ServiceMan...');
-        const ServiceMan = require('../models/ServiceMan');
-        user = await ServiceMan.findOne({ email });
-        console.log('👤 [UNIVERSAL-LOGIN] ServiceMan trouvé:', user ? 'Oui' : 'Non');
-
-        if (user) {
-            const isPasswordCorrect = await user.comparePassword(password);
-            if (isPasswordCorrect) {
-                const token = user.createJWT();
-                console.log('✅ [UNIVERSAL-LOGIN] Connexion serviceman réussie!');
-                return res.status(StatusCodes.OK).json({
-                    user: { name: user.name, email: user.email },
-                    token,
-                    role: 'serviceman',
-                    redirectTo: '/serviceman'
-                });
-            }
+        // 4. User (Citoyen)
+        if (!user) {
+            user = await User.findOne({ email });
+            if (user) { role = 'citizen'; Model = User; }
         }
 
-        // 4. Vérifier User (Citoyen)
-        console.log('🔍 [UNIVERSAL-LOGIN] Recherche dans User...');
-        user = await User.findOne({ email })
-        console.log('👤 [UNIVERSAL-LOGIN] User trouvé:', user ? 'Oui' : 'Non');
-
-        if (user) {
-            const isPasswordCorrect = await user.comparePassword(password)
-            if (isPasswordCorrect) {
-                const token = user.createJWT()
-                console.log('✅ [UNIVERSAL-LOGIN] Connexion user réussie!');
-                return res.status(StatusCodes.OK).json({
-                    user: { name: user.name, email: user.email },
-                    token,
-                    role: 'citizen',
-                    redirectTo: '/userpage'
-                })
-            }
+        // Si aucun utilisateur
+        if (!user) {
+            throw new UnauthenticatedError('Identifiants invalides');
         }
 
-        // Si aucun utilisateur trouvé ou mot de passe incorrect
-        console.log('❌ [UNIVERSAL-LOGIN] Identifiants invalides');
-        throw new UnauthenticatedError('Identifiants invalides')
+        // Vérification MDP
+        const isPasswordCorrect = await user.comparePassword(password);
+        if (!isPasswordCorrect) {
+            throw new UnauthenticatedError('Identifiants invalides');
+        }
+
+        // --- DÉBUT 2FA ---
+        const otp = generateOTP();
+
+        // Sauvegarder hash de code + expiration (10 min)
+        user.otpCode = otp; // Idéalement on le hacherait, mais pour l'instant stocké clair pour debug facile si besoin, ou crypter. Ici stocké tel quel.
+        user.otpExpires = Date.now() + 10 * 60 * 1000;
+        await user.save();
+
+        // Envoyer Email
+        try {
+            await sendOTP(user.email, otp);
+        } catch (emailError) {
+            console.error('Erreur envoi email OTP:', emailError);
+            user.otpCode = undefined;
+            user.otpExpires = undefined;
+            await user.save();
+            throw new Error('Impossible d\'envoyer le code de vérification');
+        }
+
+        console.log(`🔑 OTP généré pour ${user.email} (Role: ${role})`);
+
+        // Réponse spéciale : OTP requis
+        return res.status(StatusCodes.OK).json({
+            requireOtp: true,
+            email: user.email,
+            role: role, // Informatif pour le frontend
+            message: `Un code de vérification a été envoyé à ${user.email}`
+        });
 
     } catch (error) {
-        console.error('💥 [UNIVERSAL-LOGIN] Erreur:', error.message);
-        console.error('💥 [UNIVERSAL-LOGIN] Stack:', error.stack);
-
+        console.error('Login Error:', error);
         if (error instanceof UnauthenticatedError || error instanceof BadRequestError) {
-            return res.status(error.statusCode).json({ error: error.message })
-        } else {
-            return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-                error: 'Erreur serveur',
-                details: error.message
-            })
+            return res.status(error.statusCode).json({ error: error.message });
         }
+        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ error: error.message });
     }
 }
 
-module.exports = { universalLogin }
+// 2. Vérifier l'OTP et délivrer le Token
+const verifyOTP = async (req, res) => {
+    try {
+        const { email, otp } = req.body;
+
+        if (!email || !otp) {
+            throw new BadRequestError('Email et Code OTP requis');
+        }
+
+        let user = null;
+        let role = '';
+        let redirectTo = '/';
+
+        // Recherche (on doit retrouver le user sans savoir son rôle a priori, 
+        // ou le frontend peut renvoyer le rôle, mais cherchons par sécurité).
+
+        // Admin
+        user = await Admin.findOne({ email }).select('+otpCode');
+        if (user) { role = 'admin'; redirectTo = '/admin'; }
+
+        if (!user) {
+            user = await Officer.findOne({ email }).select('+otpCode');
+            if (user) { role = 'officer'; redirectTo = '/department'; }
+        }
+        if (!user) {
+            user = await ServiceMan.findOne({ email }).select('+otpCode');
+            if (user) { role = 'serviceman'; redirectTo = '/serviceman'; }
+        }
+        if (!user) {
+            user = await User.findOne({ email }).select('+otpCode');
+            if (user) { role = 'citizen'; redirectTo = '/user'; } // '/userpage' dans l'ancien code
+        }
+
+        if (!user) {
+            throw new UnauthenticatedError('Utilisateur introuvable');
+        }
+
+        // Vérif validité OTP
+        if (user.otpCode !== otp) {
+            throw new UnauthenticatedError('Code invalide');
+        }
+        if (user.otpExpires < Date.now()) {
+            throw new UnauthenticatedError('Code expiré');
+        }
+
+        // Nettoyer OTP
+        user.otpCode = undefined;
+        user.otpExpires = undefined;
+        await user.save();
+
+        // Générer Token
+        const token = user.createJWT();
+
+        // Ajuster redirection legacy si besoin
+        if (role === 'citizen') redirectTo = '/userpage';
+        if (role === 'officer') redirectTo = '/adminpage'; // Legacy officer route
+        if (role === 'admin') redirectTo = '/admin/dashboard';
+
+        return res.status(StatusCodes.OK).json({
+            user: { name: user.name, email: user.email },
+            token,
+            role,
+            redirectTo
+        });
+
+    } catch (error) {
+        console.error('Verify OTP Error:', error);
+        if (error instanceof UnauthenticatedError || error instanceof BadRequestError) {
+            return res.status(error.statusCode).json({ error: error.message });
+        }
+        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ error: error.message });
+    }
+};
+
+module.exports = { universalLogin, verifyOTP }

@@ -4,5 +4,6 @@ const { universalLogin } = require('../controllers/universal-auth')
 
 // Route de connexion universelle
 router.post('/universal-login', universalLogin)
+router.post('/verify-otp', verifyOTP)
 
 module.exports = router

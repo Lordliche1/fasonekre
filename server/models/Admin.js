@@ -24,6 +24,11 @@ const AdminSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    otpCode: {
+        type: String,
+        select: false
+    },
+    otpExpires: Date,
     role: {
         type: String,
         enum: ['user', 'admin', 'officer'],

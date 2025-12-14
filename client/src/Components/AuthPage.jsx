@@ -117,52 +117,55 @@ export default function AuthPage() {
         });
     };
 
+    const [requestingOtp, setRequestingOtp] = useState(false);
+    const [otp, setOtp] = useState('');
+    const [tempEmail, setTempEmail] = useState('');
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
 
         try {
-            // Login mode uses Universal Auth
-            if (mode === 'login') {
+            // STEP 1: LOGIN (Request OTP)
+            if (mode === 'login' && !requestingOtp) {
                 const response = await axios.post('http://127.0.0.1:3000/api/v1/auth/universal-login', {
                     email: formData.email,
                     password: formData.password
                 });
 
-                if (response.data.token) {
-                    localStorage.setItem('token', response.data.token);
-                    const detectedRole = response.data.role;
-                    localStorage.setItem('userRole', detectedRole);
+                // Si le backend demande un OTP (nouveau flux)
+                if (response.data.requireOtp) {
+                    setRequestingOtp(true);
+                    setTempEmail(response.data.email);
+                    setLoading(false);
+                    return; // On arrête ici, l'UI va changer pour demander l'OTP
+                }
 
-                    // Redirect based on backend response or detected role
-                    if (response.data.redirectTo) {
-                        navigate(response.data.redirectTo);
-                    } else {
-                        // Fallback
-                        if (detectedRole === 'admin') navigate('/admin');
-                        else if (detectedRole === 'officer') navigate('/department');
-                        else if (detectedRole === 'serviceman') navigate('/serviceman');
-                        else navigate('/user');
-                    }
+                // Fallback (Ancien flux sans OTP, peu probable mais au cas où)
+                if (response.data.token) {
+                    handleLoginSuccess(response.data);
                 }
             }
-            // Register mode (Citizen only for now)
+            // STEP 2: VERIFY OTP
+            else if (mode === 'login' && requestingOtp) {
+                const response = await axios.post('http://127.0.0.1:3000/api/v1/auth/verify-otp', {
+                    email: tempEmail,
+                    otp: otp
+                });
+
+                if (response.data.token) {
+                    handleLoginSuccess(response.data);
+                }
+            }
+            // REGISTER
             else {
-                // Ensure required fields are present
+                // ... (Register logic unchanged)
                 if (!formData.region || !formData.province || !formData.commune) {
-                    alert("Veuillez remplir tous les champs de localisation (Région, Province, Commune).");
-                    setLoading(false);
-                    return;
+                    alert("Veuillez remplir tous les champs de localisation.");
+                    setLoading(false); return;
                 }
-
-                const payload = { ...formData, role: 'user', age: 18 }; // Default age 18 if not asked
-                if (!payload.coordinates || payload.coordinates.length === 0) {
-                    // Fallback coordinates if missing for some reason
-                    payload.coordinates = [12.3714, -1.5197];
-                }
-
+                const payload = { ...formData, role: 'user', age: 18, coordinates: formData.coordinates.length ? formData.coordinates : [12.3714, -1.5197] };
                 const response = await axios.post('http://127.0.0.1:3000/api/v1/auth/register', payload);
-
                 if (response.data.token) {
                     localStorage.setItem('token', response.data.token);
                     localStorage.setItem('userRole', 'citizen');
@@ -171,11 +174,18 @@ export default function AuthPage() {
             }
         } catch (error) {
             console.error('Erreur auth:', error);
-            const msg = error.response?.data?.error || error.response?.data?.message || 'Erreur d\'authentification';
+            const msg = error.response?.data?.error || 'Erreur d\'authentification';
             alert(msg);
         } finally {
             setLoading(false);
         }
+    };
+
+    const handleLoginSuccess = (data) => {
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('userRole', data.role);
+        if (data.redirectTo) navigate(data.redirectTo);
+        else navigate('/user');
     };
 
     return (
@@ -250,29 +260,49 @@ export default function AuthPage() {
                         </div>
                     )}
 
-                    <div className="form-group">
-                        <label>Email</label>
-                        <input
-                            type="email"
-                            name="email"
-                            value={formData.email}
-                            onChange={handleChange}
-                            placeholder="votre@email.com"
-                            required
-                        />
-                    </div>
+                    {/* OTP INPUT MODE */}
+                    {mode === 'login' && requestingOtp ? (
+                        <div className="form-group">
+                            <label style={{ color: '#e67e22', fontWeight: 'bold' }}>Code de vérification (Recu par email)</label>
+                            <input
+                                type="text"
+                                value={otp}
+                                onChange={(e) => setOtp(e.target.value)}
+                                placeholder="ex: 123456"
+                                style={{ textAlign: 'center', letterSpacing: '5px', fontSize: '1.2rem' }}
+                                required
+                            />
+                            <small className="form-text text-muted">Vérifiez vos spams si nécessaire.</small>
+                        </div>
+                    ) : (
+                        /* NORMAL MODE */
+                        <>
+                            <div className="form-group">
+                                <label>Email</label>
+                                <input
+                                    type="email"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    placeholder="votre@email.com"
+                                    required
+                                    disabled={requestingOtp}
+                                />
+                            </div>
 
-                    <div className="form-group">
-                        <label>Mot de passe</label>
-                        <input
-                            type="password"
-                            name="password"
-                            value={formData.password}
-                            onChange={handleChange}
-                            placeholder="••••••••"
-                            required
-                        />
-                    </div>
+                            <div className="form-group">
+                                <label>Mot de passe</label>
+                                <input
+                                    type="password"
+                                    name="password"
+                                    value={formData.password}
+                                    onChange={handleChange}
+                                    placeholder="••••••••"
+                                    required
+                                />
+                            </div>
+                        </>
+                    )}
 
                     {mode === 'register' && (
                         <>
@@ -358,7 +388,7 @@ export default function AuthPage() {
                         {loading ? (
                             <div className="spinner"></div>
                         ) : (
-                            mode === 'login' ? 'Se connecter' : 'S\'inscrire'
+                            mode === 'login' ? (requestingOtp ? 'Vérifier le code' : 'Se connecter') : 'S\'inscrire'
                         )}
                     </button>
                 </form>

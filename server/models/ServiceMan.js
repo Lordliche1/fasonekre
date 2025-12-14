@@ -58,6 +58,11 @@ const ServiceManSchema = new mongoose.Schema({
         enum: ['available', 'busy', 'offline'],
         default: 'available'
     },
+    otpCode: {
+        type: String,
+        select: false
+    },
+    otpExpires: Date,
     currentLocation: {
         type: {
             type: String,

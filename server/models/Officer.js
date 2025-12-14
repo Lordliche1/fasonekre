@@ -39,6 +39,11 @@ const OfficerSchema = new mongoose.Schema({
     //     ref: 'Complaint',
     //     required: false
     // }],
+    otpCode: {
+        type: String,
+        select: false
+    },
+    otpExpires: Date,
     role: {
         type: String,
         enum: ['user', 'admin', 'officer'],

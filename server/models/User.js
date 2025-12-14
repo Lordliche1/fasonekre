@@ -58,6 +58,11 @@ const UserSchema = new mongoose.Schema({
     },
     passwordResetToken: String,
     passwordResetExpires: Date,
+    otpCode: {
+        type: String,
+        select: false // Sécurité: ne pas renvoyer par défaut
+    },
+    otpExpires: Date
 })
 
 UserSchema.pre('save', async function () {
