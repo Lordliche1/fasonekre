@@ -1,6 +1,6 @@
 # 🌍 GUIDE DE DÉPLOIEMENT : FASONEKRE
 
-Ce guide explique comment déployer la plateforme sur votre VPS AlmaLinux (`fasonekre.paamlaafi.com`).
+Ce guide explique comment déployer la plateforme sur votre VPS AlmaLinux (`fasonekre.waapii.com`).
 
 ## 📋 Prérequis sur le VPS
 Assurez-vous que les outils suivants sont installés :
@@ -28,25 +28,24 @@ git push origin main
 ```
 
 ### 2. Configuration sur le VPS
-Connectez-vous via SSH et clonez le repo dans `/var/www/fasonekre` :
+Connectez-vous via SSH et assurez-vous que le dossier existe :
 ```bash
-mkdir -p /var/www
-cd /var/www
-git clone <VOTRE_URL_GIT> fasonekre
+# Le dossier indiqué est : /home/dreamdev/fasonekre.waapii.com
+cd /home/dreamdev/fasonekre.waapii.com
 ```
 
 ### 3. Installation Automatique (Via Script)
 Rendez le script exécutable et lancez-le :
 ```bash
-chmod +x /var/www/fasonekre/deployment/deploy.sh
-/var/www/fasonekre/deployment/deploy.sh
+chmod +x ./deployment/deploy.sh
+./deployment/deploy.sh
 ```
 *Le script installera les dépendances, buildera le frontend et lancera le backend avec PM2.*
 
 ### 4. Configuration Nginx
-Copiez la configuration et redémarrez Nginx :
+Si ce n'est pas encore fait, configurez Nginx pour pointer vers le build :
 ```bash
-sudo cp /var/www/fasonekre/deployment/fasonekre.conf /etc/nginx/conf.d/
+sudo cp ./deployment/fasonekre.conf /etc/nginx/conf.d/
 sudo systemctl restart nginx
 ```
 
@@ -54,11 +53,11 @@ sudo systemctl restart nginx
 Pour sécuriser le site avec HTTPS (recommandé), utilisez Certbot :
 ```bash
 sudo yum install -y certbot python3-certbot-nginx
-sudo certbot --nginx -d fasonekre.paamlaafi.com
+sudo certbot --nginx -d fasonekre.waapii.com
 ```
 
 ## ✅ Vérification
-- Accédez à : `https://fasonekre.paamlaafi.com`
+- Accédez à : `https://fasonekre.waapii.com`
 - Testez le login admin.
 - Vérifiez les logs backend si besoin : `pm2 logs fasonekre-api`
 
