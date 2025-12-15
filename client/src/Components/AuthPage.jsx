@@ -39,7 +39,50 @@ export default function AuthPage() {
             }
         };
         fetchLocations();
+
     }, []);
+
+    // OTPLess Callback Setup
+    React.useEffect(() => {
+        window.otpless = (otplessUser) => {
+            console.log("OTPLess Callback:", otplessUser);
+            if (otplessUser && otplessUser.token) {
+                verifyOtplessToken(otplessUser.token, otplessUser);
+            } else {
+                console.error("Token Otpless manquant");
+            }
+        };
+    }, [formData.email]); // Re-bind if email changes (though logic uses user object most times)
+
+    const verifyOtplessToken = async (token, otplessUser) => {
+        setLoading(true);
+        try {
+            // On envoie le token ET le numéro de téléphone (ou email) pour vérification
+            // Le SDK renvoie souvent un objet structuré, on essaie d'extraire le phone
+            // Structure typique: { token: "...", identities: [{ identityValue: "226...", ... }] }
+            // Ou parfois directement accessible. On envoie tout ou partie.
+
+            let phone = otplessUser.identities?.[0]?.identityValue || otplessUser.phone || otplessUser.mobile?.number;
+
+            // Fallback si on ne trouve pas le phone dans l'objet user (dépend des versions SDK)
+            // On envoie quand même pour que le backend tente de vérifier via API server-to-server
+
+            const response = await axios.post('/api/v1/auth/otpless/verify-2fa', {
+                email: formData.email, // L'email utilisé lors du login step 1
+                token: token,
+                phone: phone // Optionnel selon implémentation backend
+            });
+
+            if (response.data.token) {
+                handleLoginSuccess(response.data);
+            }
+        } catch (error) {
+            console.error("Erreur vérification Otpless:", error);
+            alert("Échec de la vérification WhatsApp. Veuillez réessayer ou utiliser le code Email.");
+        } finally {
+            setLoading(false);
+        }
+    };
 
     const userTypes = [
         {
@@ -260,19 +303,35 @@ export default function AuthPage() {
                         </div>
                     )}
 
-                    {/* OTP INPUT MODE */}
                     {mode === 'login' && requestingOtp ? (
-                        <div className="form-group">
-                            <label style={{ color: '#e67e22', fontWeight: 'bold' }}>Code de vérification (Recu par email)</label>
-                            <input
-                                type="text"
-                                value={otp}
-                                onChange={(e) => setOtp(e.target.value)}
-                                placeholder="ex: 123456"
-                                style={{ textAlign: 'center', letterSpacing: '5px', fontSize: '1.2rem' }}
-                                required
-                            />
-                            <small className="form-text text-muted">Vérifiez vos spams si nécessaire.</small>
+                        <div className="form-group text-center">
+                            <h3 style={{ marginBottom: '20px', color: '#333' }}>Vérification en deux étapes</h3>
+
+                            <div className="otp-method-container bg-gray-50 p-4 rounded mb-4" style={{ border: '1px solid #eee', padding: '15px', borderRadius: '8px', marginBottom: '20px' }}>
+                                <label style={{ color: '#e67e22', fontWeight: 'bold', display: 'block', marginBottom: '10px' }}>
+                                    Option A : Code Email
+                                </label>
+                                <input
+                                    type="text"
+                                    value={otp}
+                                    onChange={(e) => setOtp(e.target.value)}
+                                    placeholder="Code à 6 chiffres"
+                                    style={{ textAlign: 'center', letterSpacing: '5px', fontSize: '1.2rem', width: '100%', marginBottom: '5px' }}
+                                />
+                                <small className="form-text text-muted" style={{ display: 'block' }}>Envoyé à {tempEmail}</small>
+                            </div>
+
+                            <div className="divider" style={{ margin: '15px 0', textAlign: 'center', color: '#aaa' }}>
+                                - OU -
+                            </div>
+
+                            <div className="otpless-method-container bg-green-50 p-4 rounded" style={{ border: '1px solid #d4edda', padding: '15px', borderRadius: '8px', backgroundColor: '#f0fff4' }}>
+                                <label style={{ color: '#27ae60', fontWeight: 'bold', display: 'block', marginBottom: '10px' }}>
+                                    Option B : WhatsApp (Recommandé)
+                                </label>
+                                {/* Conteneur pour le widget Otpless */}
+                                <div id="otpless-login-page"></div>
+                            </div>
                         </div>
                     ) : (
                         /* NORMAL MODE */
@@ -407,6 +466,8 @@ export default function AuthPage() {
                         </p>
                     )}
                 </div>
+
+
 
                 {/* Quick Login (Dev) */}
                 <div className="quick-login">

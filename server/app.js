@@ -45,6 +45,7 @@ const adminRouter = require('./routes/admin');
 const geminiRouter = require('./routes/gemini');
 const servicemanRouter = require('./routes/serviceman');
 const departmentRouter = require('./routes/department');
+const otplessRouter = require('./routes/otpless-auth');
 const { roleAuthenticationMiddleware } = require('./middleware/roleAuthentication.js');
 
 // routes
@@ -54,6 +55,7 @@ app.use('/uploads', express.static('uploads'));
 
 app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/auth', universalAuthRouter)
+app.use('/api/v1/auth', otplessRouter)
 app.use('/api/v1/user', authenticateUser, roleAuthenticationMiddleware('user'), userRouter)
 app.use('/api/v1/complaints', authenticateUser, roleAuthenticationMiddleware('user'), complaintsRouter)
 app.use('/api/v1/officer', authenticateOfficer, roleAuthenticationMiddleware('officer'), officerRouter)
