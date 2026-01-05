@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './AuthPage.css';
+import { burkinaLocations as fallbackLocations } from '../data/burkina-locations';
 
 export default function AuthPage() {
     const navigate = useNavigate();
@@ -32,10 +33,18 @@ export default function AuthPage() {
             try {
                 const response = await axios.get('/api/v1/auth/locations');
                 const data = response.data.locations;
-                setLocationsData(data);
-                setRegions(data); // Initial regions list
+                if (data && Array.isArray(data) && data.length > 0) {
+                    setLocationsData(data);
+                    setRegions(data);
+                } else {
+                    console.warn("API returned empty locations, using fallback.");
+                    setLocationsData(fallbackLocations);
+                    setRegions(fallbackLocations);
+                }
             } catch (error) {
-                console.error("Error fetching locations:", error);
+                console.error("Error fetching locations, using fallback:", error);
+                setLocationsData(fallbackLocations);
+                setRegions(fallbackLocations);
             }
         };
         fetchLocations();
